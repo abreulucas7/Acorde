@@ -53,3 +53,13 @@ def excluir_faixas(id):
         WHERE id = (?)
         '''
         conn.execute(sql_excluir_faixas, (id,)) 
+
+def seek_musica(id, musica):
+    with sqlite3.connect("Acorde.db") as conn:
+        sql_seek_musica = '''
+        SELECT id,musica
+        FROM info
+        WHERE musica = (?)
+        '''
+        conn.execute(sql_seek_musica, (id,musica)) 
+

@@ -10,12 +10,10 @@
 </head>
 
 <body>
-
     <header>
         <h1>{{pag_nome}}</h1>
         {% include "menu.html"%}
     </header>
-
     <main>
     <section>
         <table>
@@ -26,23 +24,18 @@
                 <th>Tablatura</th>
                 <th>Letra </th>
             </tr>
-            <!--parte variável-->
             {% for id, musica, artista, tablatura, letra in info %}
             <tr>
                 <td>{{id}}</td>
-                <td><a href="/reprodução">{{musica}}</a></td>
+                <td><a href="/reproducao/{{id}}">{{musica}}</a></td>
                 <td>{{artista}}</td>
                 <td>{{tablatura}}</td>
                 <td>{{letra}}</td>
                 <td><a href="/excluir/faixa/{{id}}">Excluir</a></td>
             </tr>       
             {% endfor %}
-            <!--fim da parte variável-->
         </table>
     </section>
-
     </main>
-
-
 </body>
 </html>

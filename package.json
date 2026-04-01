@@ -12,6 +12,11 @@
   "description": "",
   "dependencies": {
     "bootstrap": "^5.3.8",
-    "sass": "^1.94.2"
+    "sass": "^1.94.2",
+    "vexflow": "^5.0.0",
+    "vextab": "^4.0.5"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.28.5"
   }
 }

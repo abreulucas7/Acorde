@@ -1,7 +1,5 @@
 from flask import Flask, render_template, request, redirect, flash
 
-import flask as fk
-
 from secrets import token_hex
 
 import model
@@ -36,30 +34,6 @@ def post_playlists():
 
     return redirect("/playlists")
 
-@app.get("/")
-def get_home():
-    try:
-        login = fk.session["login"]
-        return fk.render_template("home.html", login=login)
-    except KeyError:
-        return fk.render_template("home.html", pag_nome = "Home")
-    
-@app.post("/")
-def valida_login():
-    login = fk.request.form["login"]
-    senha = fk.request.form["password"]
-    if login=="user" and senha=="123":
-       fk.session["login"] = login
-       return fk.redirect("/")
-    else:
-        return fk.redirect("/")
-
-@app.get("/logout")
-def get_logout():
-    del fk.session["login"]
-    return fk.redirect("/")
-
-
 @app.get("/excluir/playlists/<id>")
 def get_excluir_playlist(id):
     model.excluir_playlists(id)
@@ -68,19 +42,21 @@ def get_excluir_playlist(id):
 @app.get("/excluir/faixa/<id>")
 def get_excluir_faixa(id):
     model.excluir_faixas(id)
-    return redirect("/faixas")
+    return redirect("/")
 
-@app.get("/faixas")
+@app.get("/")
 def get_faixas():
     listagem_musicas = model.listar_musicas()
     return render_template("faixas.html", info=listagem_musicas, pag_nome = "Faixas") 
 
-@app.get("/reprodução")
-def get_reprodução():
-    listagem_musica = model.listar_musicas()
-    musica = listagem_musica
-    return render_template("reprodução.html", musica=musica)
+@app.get("/index")
+def get_index():
+    return render_template("/index.html")
+
+@app.get("/interface")
+def get_styling():
+    return render_template("/interface.html")
 
 
-
-
+if __name__ == '__main__':
+    app.run(debug=True)
